@@ -20,7 +20,7 @@ exports.getAllForms = async (req, res) => {
 
 exports.getFormById = async (req, res) => {
   const form = await Form.findById(req.params.id)
-  await form.save(); // wait until updated properly
+  await form.save();
   res.status(200).json(form);
   
 }
@@ -34,3 +34,17 @@ exports.deleteForm = async (req, res) => {
   await Form.findByIdAndDelete(req.params.id)
   res.json({ message: 'Form deleted' })
 }
+
+exports.updateFormStatus = async (req, res) => {
+    try {
+      const form = await Form.findByIdAndUpdate(
+        req.params.id,
+        { status: req.body.status },
+        { new: true }
+      )
+      res.json(form)
+    } catch (err) {
+      res.status(500).json({ message: err.message })
+    }
+  }
+  

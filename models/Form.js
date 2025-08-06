@@ -13,7 +13,7 @@ const FormSchema = new mongoose.Schema({
   title: String,
   description: String,
   fields: [FieldSchema],
-  status: { type: String, enum: ['draft', 'published'], default: 'draft' },
+  status: { type: String, enum: ['draft', 'published', 'closed'], default: 'draft' },
   submissionLimit: Number,
   thankYouMessage: String
 }, { timestamps: true })
